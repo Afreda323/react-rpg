@@ -20,12 +20,12 @@ const Game: FunctionComponent<IProps> = props => {
   // Move player when arrow keys are pressed
   const handleKeyDown = throttle(
     (e: KeyboardEvent) => props.movePlayer(getKey(e.keyCode)),
-    1500,
+    1600,
     { trailing: false, leading: true }
   )
   // Toggle the walking state off 1.3 seconds after move key is pressed
   const handleKeyUp = () =>
-    delay((e: KeyboardEvent) => props.stopPlayer(), 1300)
+    delay((e: KeyboardEvent) => props.stopPlayer(), 1500)
 
   // Event listener for key presses
   useEffect(() => {

@@ -14,7 +14,7 @@ const Map: FunctionComponent<IProps> = props => {
       {props.tiles.map((row, i) => (
         <TileRow key={`row_${i}`}>
           {row.map((tile, j) => (
-            <Tile key={`tile_${i}_${j}`} />
+            <Tile key={`tile_${i}_${j}`} tileCode={tile} />
           ))}
         </TileRow>
       ))}
