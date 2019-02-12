@@ -6,6 +6,7 @@ export interface IPlayerReducer {
   movement: {
     position: [number, number]
     direction: DIRECTIONS
+    isMoving: boolean
   }
 }
 
@@ -13,6 +14,7 @@ const initialState: IPlayerReducer = {
   movement: {
     position: [0, 0],
     direction: DIRECTIONS.LEFT,
+    isMoving: false,
   },
 }
 
@@ -25,11 +27,22 @@ export default function playerReducer(state = initialState, action: any) {
           ...state.movement,
           position: getNewPosition(state.movement.position, action.direction),
           direction:
-            action.direction === DIRECTIONS.UP || action.direction === DIRECTIONS.DOWN
+            action.direction === DIRECTIONS.UP ||
+            action.direction === DIRECTIONS.DOWN
               ? state.movement.direction
-              : action.direction
+              : action.direction,
+          isMoving: true,
         },
       }
+    case PLAYER_ACTIONS.STOP_PLAYER: {
+      return {
+        ...state,
+        movement: {
+          ...state.movement,
+          isMoving: false,
+        },
+      }
+    }
     default:
       return { ...state }
   }
