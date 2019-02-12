@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import Game from './containers/Game'
-import Player from './containers/Player'
 import styled from 'styled-components'
 import { Provider } from 'react-redux'
 import { configStore } from './redux/store'
+import Map from './containers/Map'
+import Game from './containers/Game'
+import Player from './containers/Player'
 
 const App = () => {
   return (
     <Provider store={configStore()}>
       <Wrapper>
         <Game>
+          <Map />
           <Player />
         </Game>
       </Wrapper>
