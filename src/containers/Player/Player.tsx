@@ -1,18 +1,26 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { IRootReducer } from '../../redux/reducers'
 import { IPlayerReducer } from '../../redux/reducers/player'
-import styled, { css, keyframes } from 'styled-components'
-import { PLAYER } from '../../constants'
-import hero from '../../sprites/hero.png'
+import { Hero } from './styled'
 
 interface IProps extends IPlayerReducer {}
 
 const Player: FunctionComponent<IProps> = props => {
+  const [lastPos, setLastPos] = useState(props.movement.position)
+  const [isWalking, setIsWalking] = useState(false)
+
+  useEffect(() => {
+    setLastPos(props.movement.position)
+    setIsWalking(lastPos !== props.movement.position)
+  }, [props.movement.position])
+
   return (
-    <div>
-      <Hero />
-    </div>
+    <Hero
+      direction={props.movement.direction}
+      position={props.movement.position}
+      isWalking={isWalking}
+    />
   )
 }
 
@@ -21,20 +29,5 @@ function mapStateToProps(state: IRootReducer) {
     ...state.player,
   }
 }
-
-const idleAnimation = keyframes`
-  100% { background-position: ${PLAYER.WIDTH * 12}px 0; }
-`
-
-const idleCss = css`
-  animation: ${idleAnimation} 2s steps(12) infinite;
-`
-
-const Hero = styled.div`
-  height: ${PLAYER.HEIGHT}px;
-  width: ${PLAYER.WIDTH}px;
-  background: url('${hero}') 0px 0px;
-  ${idleCss}
-`
 
 export default connect(mapStateToProps)(Player)

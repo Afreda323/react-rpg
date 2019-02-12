@@ -7,6 +7,7 @@
     "@types/node": "10.12.24",
     "@types/react": "16.8.2",
     "@types/react-dom": "16.8.0",
+    "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
@@ -32,6 +33,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/lodash": "^4.14.120",
     "@types/react-redux": "^7.0.1",
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.6",

@@ -1,6 +1,6 @@
 export enum PLAYER {
-  HEIGHT = 32,
-  WIDTH = 32,
+  HEIGHT = 64,
+  WIDTH = 64,
 }
 
 export enum DIRECTIONS {
