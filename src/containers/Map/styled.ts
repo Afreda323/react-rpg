@@ -5,3 +5,7 @@ export const Wrapper = styled.div`
   top: 0;
   left: 0;
 `
+
+export const TileRow = styled.div`
+  display: flex;
+`

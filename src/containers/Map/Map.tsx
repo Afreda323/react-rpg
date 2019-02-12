@@ -1,14 +1,25 @@
 import React, { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
 import { IRootReducer } from '../../redux/reducers'
-import { Wrapper } from './styled'
+import { Wrapper, TileRow } from './styled'
+import Tile from '../../components/Tile'
 
 interface IProps {
   tiles: number[][]
 }
 
-const Game: FunctionComponent<IProps> = props => {
-  return <Wrapper>{props.tiles.length}</Wrapper>
+const Map: FunctionComponent<IProps> = props => {
+  return (
+    <Wrapper>
+      {props.tiles.map((row, i) => (
+        <TileRow key={`row_${i}`}>
+          {row.map((tile, j) => (
+            <Tile key={`tile_${i}_${j}`} />
+          ))}
+        </TileRow>
+      ))}
+    </Wrapper>
+  )
 }
 
 function mapStateToProps(state: IRootReducer) {
@@ -20,4 +31,4 @@ function mapStateToProps(state: IRootReducer) {
 export default connect(
   mapStateToProps,
   {},
-)(Game)
+)(Map)
