@@ -1,4 +1,3 @@
-import { Action } from 'redux'
 import { DIRECTIONS, PLAYER, MAP } from '../../constants'
 import { PLAYER_ACTIONS } from '../actions/player'
 
@@ -49,6 +48,7 @@ export default function playerReducer(state = initialState, action: any) {
   }
 }
 
+// Basic calculation of where the player should move next
 function getNewPosition(
   oldPos: [number, number],
   direction: DIRECTIONS,
@@ -73,6 +73,7 @@ function getNewPosition(
   return isOnMap(newPos) ? newPos : oldPos
 }
 
+// Return whether the new position is on the map or not
 function isOnMap(pos: [number, number]) {
   return (
     pos[0] <= MAP.WIDTH - PLAYER.WIDTH &&

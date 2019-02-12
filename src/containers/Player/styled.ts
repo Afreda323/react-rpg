@@ -23,7 +23,7 @@ export const Hero = styled.div<{
   position: [number, number]
   direction: DIRECTIONS
 }>`
-  transition: top 2s, left 2s;
+  transition: top 1.5s, left 1.5s;
   display: inline-block;
   position: absolute;
   top: ${({ position }) => position[1]}px;
