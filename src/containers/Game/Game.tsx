@@ -20,6 +20,7 @@ const Game: FunctionComponent<IProps> = props => {
   const handleKeyDown = throttle(
     (e: KeyboardEvent) => props.movePlayer(getKey(e.keyCode)),
     500,
+    { leading: true }
   )
   const handleKeyUp = () =>
     delay((e: KeyboardEvent) => props.stopPlayer(), 1400)

@@ -9,3 +9,8 @@ export enum DIRECTIONS {
   LEFT = 'LEFT',
   RIGHT = 'RIGHT',
 }
+
+export enum MAP {
+  WIDTH = PLAYER.HEIGHT * 15,
+  HEIGHT = PLAYER.HEIGHT * 10,
+}

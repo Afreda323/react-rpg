@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { PLAYER } from '../../constants'
+import { MAP } from '../../constants'
 
 export const Wrapper = styled.div`
-  width: ${PLAYER.WIDTH * 15}px;
-  height: ${PLAYER.HEIGHT * 10}px;
+  width: ${MAP.WIDTH}px;
+  height: ${MAP.HEIGHT}px;
   margin: 10px auto;
   border: 3px solid white;
   position: relative;

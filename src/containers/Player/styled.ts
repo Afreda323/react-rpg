@@ -6,7 +6,7 @@ export const idleAnimation = keyframes`
 `
 
 export const idleCss = css`
-  animation: ${idleAnimation} 1.5s steps(12) infinite;
+  animation: ${idleAnimation} 3s steps(12) infinite;
 `
 
 export const walkingAnimation = keyframes`
@@ -23,7 +23,7 @@ export const Hero = styled.div<{
   position: [number, number]
   direction: DIRECTIONS
 }>`
-  transition: top 1s, left 2s;
+  transition: top 2s, left 2s;
   display: inline-block;
   position: absolute;
   top: ${({ position }) => position[1]}px;

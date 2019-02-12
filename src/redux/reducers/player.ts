@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { DIRECTIONS, PLAYER } from '../../constants'
+import { DIRECTIONS, PLAYER, MAP } from '../../constants'
 import { PLAYER_ACTIONS } from '../actions/player'
 
 export interface IPlayerReducer {
@@ -21,17 +21,18 @@ const initialState: IPlayerReducer = {
 export default function playerReducer(state = initialState, action: any) {
   switch (action.type) {
     case PLAYER_ACTIONS.MOVE_PLAYER:
+      const newPosition = getNewPosition(state.movement.position, action.direction)
       return {
         ...state,
         movement: {
           ...state.movement,
-          position: getNewPosition(state.movement.position, action.direction),
+          position: newPosition,
           direction:
             action.direction === DIRECTIONS.UP ||
             action.direction === DIRECTIONS.DOWN
               ? state.movement.direction
               : action.direction,
-          isMoving: true,
+          isMoving: newPosition !== state.movement.position,
         },
       }
     case PLAYER_ACTIONS.STOP_PLAYER: {
@@ -52,16 +53,31 @@ function getNewPosition(
   oldPos: [number, number],
   direction: DIRECTIONS,
 ): [number, number] {
+  let newPos = [...oldPos] as [number, number]
   switch (direction) {
     case DIRECTIONS.RIGHT:
-      return [oldPos[0] + PLAYER.WIDTH, oldPos[1]]
+      newPos = [oldPos[0] + PLAYER.WIDTH, oldPos[1]]
+      break
     case DIRECTIONS.LEFT:
-      return [oldPos[0] - PLAYER.WIDTH, oldPos[1]]
+      newPos = [oldPos[0] - PLAYER.WIDTH, oldPos[1]]
+      break
     case DIRECTIONS.UP:
-      return [oldPos[0], oldPos[1] - PLAYER.HEIGHT]
+      newPos = [oldPos[0], oldPos[1] - PLAYER.HEIGHT]
+      break
     case DIRECTIONS.DOWN:
-      return [oldPos[0], oldPos[1] + PLAYER.HEIGHT]
+      newPos = [oldPos[0], oldPos[1] + PLAYER.HEIGHT]
+      break
     default:
-      return oldPos
+      break
   }
+  return isOnMap(newPos) ? newPos : oldPos
+}
+
+function isOnMap(pos: [number, number]) {
+  return (
+    pos[0] <= MAP.WIDTH - PLAYER.WIDTH &&
+    pos[0] >= 0 &&
+    pos[1] <= MAP.HEIGHT - PLAYER.HEIGHT &&
+    pos[1] >= 0
+  )
 }
