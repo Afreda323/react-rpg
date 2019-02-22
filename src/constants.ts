@@ -8,6 +8,7 @@ export enum DIRECTIONS {
   DOWN = 'DOWN',
   LEFT = 'LEFT',
   RIGHT = 'RIGHT',
+  NONE = 'NONE'
 }
 
 export enum MAP {

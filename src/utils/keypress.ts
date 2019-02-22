@@ -11,6 +11,6 @@ export const getKey = (keyCode: number) => {
     case 39:
       return DIRECTIONS.RIGHT
     default:
-      return DIRECTIONS.DOWN
+      return DIRECTIONS.NONE
   }
 }

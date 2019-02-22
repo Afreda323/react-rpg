@@ -20,7 +20,10 @@ const initialState: IPlayerReducer = {
 export default function playerReducer(state = initialState, action: any) {
   switch (action.type) {
     case PLAYER_ACTIONS.MOVE_PLAYER:
-      const newPosition = getNewPosition(state.movement.position, action.direction)
+      const newPosition = getNewPosition(
+        state.movement.position,
+        action.direction,
+      )
       return {
         ...state,
         movement: {
@@ -31,7 +34,9 @@ export default function playerReducer(state = initialState, action: any) {
             action.direction === DIRECTIONS.DOWN
               ? state.movement.direction
               : action.direction,
-          isMoving: newPosition !== state.movement.position,
+          isMoving:
+            newPosition !== state.movement.position &&
+            action.direction !== DIRECTIONS.NONE,
         },
       }
     case PLAYER_ACTIONS.STOP_PLAYER: {
